@@ -36,7 +36,7 @@ dhcp_subnets:
     range_begin: 10.0.0.70
     range_end: 10.0.0.250
 dhcp_hosts:
-  - name: k3s-bastion-wien
+  - name: k3s-bastion-wien.gepardec.local
     mac: 'dc:a6:32:be:c7:99'
     ip: 10.0.0.1
   - name: master-0
@@ -127,6 +127,10 @@ haproxy_backend:
       - dontlog-normal
     balance: source
     server:
+      - name: k8s-master-00
+        listen: '10.0.0.10:80'
+        param:
+          - check
       - name: k8s-worker-00
         listen: '10.0.0.20:80'
         param:
@@ -150,6 +154,10 @@ haproxy_backend:
       - dontlog-normal
     balance: source
     server:
+      - name: k8s-master-00
+        listen: '10.0.0.10:443'
+        param:
+          - check
       - name: k8s-worker-00
         listen: '10.0.0.20:443'
         param:
