@@ -36,15 +36,18 @@ dhcp_subnets:
     range_begin: 10.0.0.70
     range_end: 10.0.0.250
 dhcp_hosts:
-  - name: k3s
-    mac: 'dc:a6:32:be:c7:a5'
+  - name: k3s-bastion-wien
+    mac: 'dc:a6:32:be:c7:99'
     ip: 10.0.0.1
   - name: master-0
-    mac: 'dc:a6:32:b1:17:b6'
+    mac: 'dc:a6:32:be:c7:89'
     ip: 10.0.0.10
   - name: worker-0
-    mac: 'dc:a6:32:b1:17:c8'
-    ip: 10.0.0.20  
+    mac: 'dc:a6:32:be:c7:3c'
+    ip: 10.0.0.20
+  - name: worker-1
+    mac: 'dc:a6:32:b7:f3:76'
+    ip: 10.0.0.21
 dhcp6_enable: false
 
 # bind config
@@ -75,7 +78,7 @@ bind_zones:
       - '10.0.0.1'
     hostmaster_email: "office@geaprdec.com"
     hosts:
-      - name: bastion
+      - name: k3s-bastion-wien
         ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
         aliases:
           - "*.apps"
