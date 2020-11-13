@@ -24,7 +24,7 @@
     - ckaserer.authorized_keys
     - ckaserer.k3s_bastion
     - gepardec.k3s_iptables
-    - ckaserer.dhcp
+    - gepardec.k3s_dhcp
     - bertvv.bind
     - gepardec.k3s_haproxy
 
