@@ -1,6 +1,5 @@
 ---
 
-# authorized_keys
 
 authorization_list:
   - name: pi
@@ -36,7 +35,7 @@ dhcp_subnets:
     range_begin: 10.0.0.70
     range_end: 10.0.0.250
 dhcp_hosts:
-  - name: k3s-bastion-wien.gepardec.local
+  - name: k3s-bastion-wien
     mac: 'dc:a6:32:be:c7:99'
     ip: 10.0.0.1
   - name: master-0
@@ -174,5 +173,13 @@ haproxy_backend:
         listen: '10.0.0.23:443'
         param:
           - check
+
+# hostname mapping
+
+hostname_mapping:
+  "k3s-bastion-wien.gepardec.local": "k3s-bastion-wien"
+  "10.0.0.10": master-"0"
+  "10.0.0.20": worker-0
+  "10.0.0.21": worker-1
 
 ...

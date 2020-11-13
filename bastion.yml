@@ -20,12 +20,29 @@
 #        type: rsa
 #      delegate_to: 127.0.0.1
 
+
   roles:
     - ckaserer.authorized_keys
     - ckaserer.k3s_bastion
     - gepardec.k3s_iptables
-    - gepardec.k3s_dhcp
     - bertvv.bind
+    - ckaserer.dhcp
     - gepardec.k3s_haproxy
 
+- hosts: all
+  become: true
+
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    - include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yml"
+      tags: [ 'always' ]
+
+  tasks:
+    - name: set hostname
+      hostname:
+        name: "{{ hostname_mapping[inventory_hostname] }}"
 ...

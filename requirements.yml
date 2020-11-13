@@ -1,6 +1,6 @@
 ---
 - name: ckaserer.authorized_keys
-- name: ckaserer.dhcp
+- name: gepardec.k3s_dhcp
 - name: ckaserer.k3s_bastion
   version: 1.0.1
 - name: gepardec.k3s_iptables
